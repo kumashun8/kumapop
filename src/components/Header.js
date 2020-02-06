@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {
   Slide,
   useScrollTrigger,
-  CssBaseline,
   AppBar,
   Typography,
   makeStyles,
@@ -11,7 +10,6 @@ import {
 
 const HideOnScroll = props => {
   const { children } = props
-
   const trigger = useScrollTrigger()
 
   return (

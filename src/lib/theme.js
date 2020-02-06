@@ -64,9 +64,10 @@ theme.typography = {
     fontFamily: 'Audiowide',
     fontSize: 80,
     fontWeight: 700,
+    whiteSpace: 'pre-line',
     color: palette.secondary.main,
     [theme.breakpoints.down('xs')]: {
-      fontSize: 36,
+      fontSize: 64,
     },
   },
   h2: {
@@ -86,7 +87,7 @@ theme.typography = {
     fontSize: 16,
     color: '#030303',
     [theme.breakpoints.down('xs')]: {
-      fontSize: 12,
+      fontSize: 14,
     },
   },
   body2: {

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { makeStyles, withStyles } from '@material-ui/styles'
+import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/styles'
 import { BarChart, Bar, Cell } from 'recharts'
-import { Typography, Slider } from '@material-ui/core'
+import { Typography, useMediaQuery } from '@material-ui/core'
 import { useInterval } from 'lib/hook'
+import Slider from 'components/Slider'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,61 +21,28 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-  },
-  slider: {
-    width: '50vw',
-    height: '16px',
-    '& thumb': {
-      height: 24,
+    [theme.breakpoints.down('xs')]: {
+      top: '30vh',
     },
   },
 }))
-
-const PrettoSlider = withStyles({
-  root: {
-    color: '#bcaaa4',
-    height: 8,
-    width: '50vw',
-    margin: '8px 0',
-  },
-  thumb: {
-    height: 24,
-    width: 24,
-    backgroundColor: '#fafafa',
-    border: '4px solid currentColor',
-    marginTop: -8,
-    marginLeft: -12,
-    '&:focus,&:hover,&$active': {
-      boxShadow: 'inherit',
-    },
-  },
-  active: {},
-  valueLabel: {
-    left: 'calc(-50% + 4px)',
-  },
-  track: {
-    height: 8,
-    borderRadius: 4,
-  },
-  rail: {
-    height: 8,
-    borderRadius: 4,
-  },
-})(Slider)
 
 const getRandomInt = max => {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
-const newData = () =>
-  new Array(10).fill(0).map(i => ({ id: i, score: getRandomInt(8) }))
+const newData = isModile =>
+  new Array(isModile ? 6 : 10)
+    .fill(0)
+    .map(i => ({ id: i, score: getRandomInt(8) }))
 
 export default () => {
   const classes = useStyles()
-  const [data, setData] = useState(newData())
+  const isModile = useMediaQuery('(max-width:600px)')
+  const [data, setData] = useState(newData(isModile))
   const [span, setSpan] = useState(900)
 
-  useInterval(() => setData(newData), span)
+  useInterval(() => setData(newData(isModile)), span)
 
   const handleChangeSpeed = (event, newVaule) => {
     setSpan(2000 - newVaule)
@@ -83,8 +51,8 @@ export default () => {
   return (
     <div className={classes.root}>
       <div className={classes.title}>
-        <Typography variant="h1">Hayato Okuma</Typography>
-        <PrettoSlider
+        <Typography variant="h1">Hayato{isModile ? '\n' : ' '}Okuma</Typography>
+        <Slider
           max={1800}
           defaultValue={900}
           step={10}
@@ -106,7 +74,6 @@ export default () => {
           barGap={0}
           barSize={1200}
         >
-          {console.log(span)}
           <Bar dataKey="score" animationDuration={span}>
             {data.map((entry, index) => (
               <Cell
