@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
+import { GitHub, Launch } from '@material-ui/icons'
 import {
   Typography,
   Card,
@@ -8,7 +9,8 @@ import {
   CardMedia,
   CardContent,
   CardActions,
-  Button,
+  IconButton,
+  Tooltip,
 } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
@@ -19,6 +21,14 @@ const useStyles = makeStyles(theme => ({
 const MyCard = props => {
   const { project } = props
   const classes = useStyles()
+
+  const handleOpenGithub = () => {
+    window.open(project.github, '_blank')
+  }
+  const handleOpenPublic = () => {
+    window.open(project.public, '_blank')
+  }
+
   return (
     <Card>
       <CardActionArea>
@@ -36,8 +46,16 @@ const MyCard = props => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button>Github</Button>
-        <Button>link</Button>
+        <Tooltip placement="bottom" title="Githubリポジトリ">
+          <IconButton onClick={handleOpenGithub}>
+            <GitHub fontSize="small" />
+          </IconButton>
+        </Tooltip>
+        <Tooltip placement="bottom" title="公開中のサイト">
+          <IconButton onClick={handleOpenPublic}>
+            <Launch fontSize="small" />
+          </IconButton>
+        </Tooltip>
       </CardActions>
     </Card>
   )
@@ -50,6 +68,8 @@ MyCard.propTypes = {
     member: PropTypes.oneOf(['個人', 'チーム']),
     detail: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    github: PropTypes.string.isRequired,
+    public: PropTypes.string.isRequired,
   }).isRequired,
 }
 

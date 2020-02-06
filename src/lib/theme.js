@@ -88,9 +88,12 @@ theme.typography = {
   },
   h4: {
     fontFamily: 'Koruri',
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 700,
     color: theme.palette.primary.main,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 20,
+    },
   },
   subtitle1: {
     fontFamily: 'Audiowide',

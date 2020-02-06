@@ -8,10 +8,7 @@ import Card from 'components/Card'
 import projects from 'data/projects'
 
 const useStyles = makeStyles(theme => ({
-  image: {
-    width: '100%',
-    boxShadow: `8px 8px ${theme.palette.secondary.dark}`,
-  },
+  projects: { marginTop: 16 },
 }))
 
 const Projects = props => {
@@ -21,8 +18,13 @@ const Projects = props => {
     <Container>
       <div id="projects" />
       <Headline>Projects</Headline>
+      <Typography>
+        公表可能なレベルの成果物はこんな感じです。{'\n'}メインはRails, React,
+        Gatsbyです。
+      </Typography>
       <Grid
         container
+        className={classes.projects}
         direction={isMobile ? 'column' : 'row'}
         justify="space-between"
         alignItems="center"
