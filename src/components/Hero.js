@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { BarChart, Bar, Cell } from 'recharts'
-import { Typography, useMediaQuery } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { useInterval } from 'lib/hook'
 import Slider from 'components/Slider'
 
@@ -11,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     position: 'relative',
     alignItems: 'flex-end',
+    backgroundColor: theme.palette.primary.main,
   },
   title: {
     position: 'absolute',
@@ -31,18 +33,18 @@ const getRandomInt = max => {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
-const newData = isModile =>
-  new Array(isModile ? 6 : 10)
+const newData = isMobile =>
+  new Array(isMobile ? 6 : 8)
     .fill(0)
     .map(i => ({ id: i, score: getRandomInt(8) }))
 
-export default () => {
+const Hero = props => {
+  const { isMobile } = props
   const classes = useStyles()
-  const isModile = useMediaQuery('(max-width:600px)')
-  const [data, setData] = useState(newData(isModile))
+  const [data, setData] = useState(newData(isMobile))
   const [span, setSpan] = useState(900)
 
-  useInterval(() => setData(newData(isModile)), span)
+  useInterval(() => setData(newData(isMobile)), span)
 
   const handleChangeSpeed = (event, newVaule) => {
     setSpan(2000 - newVaule)
@@ -51,7 +53,7 @@ export default () => {
   return (
     <div className={classes.root}>
       <div className={classes.title}>
-        <Typography variant="h1">Hayato{isModile ? '\n' : ' '}Okuma</Typography>
+        <Typography variant="h1">Hayato{isMobile ? '\n' : ' '}Okuma</Typography>
         <Slider
           max={1800}
           defaultValue={900}
@@ -59,10 +61,14 @@ export default () => {
           onChange={handleChangeSpeed}
         />
         <Typography>
-          映画と洋服がゆる〜く好きな20卒エンジニアです
+          こつこつハック
           <span role="img" aria-label="kuma">
-            🐻
-          </span>{' '}
+            👨‍💻
+          </span>
+          ゆるっとファッション
+          <span role="img" aria-label="kuma">
+            🎩
+          </span>
         </Typography>
       </div>
       {span < 2000 && (
@@ -78,7 +84,7 @@ export default () => {
             {data.map((entry, index) => (
               <Cell
                 key={index}
-                fill={entry.score === 0 ? '#bcaaa4' : '#cfd8dc'}
+                fill={entry.score === 0 ? '#bcaaa4' : '#e0e0e0'}
               />
             ))}
           </Bar>
@@ -87,3 +93,9 @@ export default () => {
     </div>
   )
 }
+
+Hero.propTypes = {
+  isMobile: PropTypes.bool.isRequired,
+}
+
+export default Hero

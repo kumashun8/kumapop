@@ -77,17 +77,24 @@ theme.typography = {
     color: '#fafafa',
   },
   subtitle1: {
-    fontSize: 24,
+    fontFamily: 'Audiowide',
+    fontSize: 48,
     fontWeight: 700,
     marginBottom: 8,
     color: palette.primary.main,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 32,
+    },
   },
   body1: {
     fontFamily: 'Koruri, Arial',
+    whiteSpace: 'pre-line',
     fontSize: 16,
+    lineHeight: '32px',
     color: '#030303',
     [theme.breakpoints.down('xs')]: {
       fontSize: 14,
+      lineHeight: '28px',
     },
   },
   body2: {
