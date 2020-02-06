@@ -95,6 +95,14 @@ theme.typography = {
       fontSize: 20,
     },
   },
+  h5: {
+    fontFamily: 'Koruri',
+    fontSize: 20,
+    color: theme.palette.primary.main,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 16,
+    },
+  },
   subtitle1: {
     fontFamily: 'Audiowide',
     fontSize: 48,

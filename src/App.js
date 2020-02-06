@@ -18,7 +18,7 @@ const App = () => {
         <Hero {...{ isMobile }} />
         <About {...{ isMobile }} />
         <Projects {...{ isMobile }} />
-        <Writing />
+        <Writing {...{ isMobile }} />
       </BrowserRouter>
     </ThemeProvider>
   )
