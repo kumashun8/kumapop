@@ -62,8 +62,8 @@ Article.defaultProps = {
   article: {
     title: 'hogehoge',
     created_at: '2020-02-06',
-    url: 'https://github.com/8810KMKM/triole',
-    tags: ['Rails', 'React'],
+    url: 'https://qiita.com/kumamuk/items/3f9a54c18b2845dc7e73',
+    tags: [{ name: 'Rails' }, { name: 'React' }],
   },
 }
 
