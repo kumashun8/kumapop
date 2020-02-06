@@ -56,6 +56,8 @@ const theme = createMuiTheme(
   },
   jaJP
 )
+const htmlFontSize = 16
+const coef = fontSize => fontSize / 14
 
 theme.typography = {
   h1: {
@@ -93,13 +95,14 @@ theme.typography = {
     color: '#fafafa',
   },
   button: {
-    fontSize: 16,
+    fontFamily: 'Koruri, Arial',
     color: '#fafafa',
   },
   caption: {
     fontSize: 12,
     color: palette.info.main,
   },
+  pxToRem: size => `${(size / htmlFontSize) * coef(size)}rem`,
 }
 
 export default theme

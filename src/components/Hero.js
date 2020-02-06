@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles, withStyles } from '@material-ui/styles'
 import { BarChart, Bar, Cell } from 'recharts'
-import { Typography } from '@material-ui/core'
+import { Typography, Slider } from '@material-ui/core'
+import { useInterval } from 'lib/hook'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,14 +14,53 @@ const useStyles = makeStyles(theme => ({
   title: {
     position: 'absolute',
     zIndex: 5,
-    top: '40vh',
+    top: '35vh',
     width: '100vw',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
   },
+  slider: {
+    width: '50vw',
+    height: '16px',
+    '& thumb': {
+      height: 24,
+    },
+  },
 }))
+
+const PrettoSlider = withStyles({
+  root: {
+    color: '#bcaaa4',
+    height: 8,
+    width: '50vw',
+    margin: '8px 0',
+  },
+  thumb: {
+    height: 24,
+    width: 24,
+    backgroundColor: '#fafafa',
+    border: '4px solid currentColor',
+    marginTop: -8,
+    marginLeft: -12,
+    '&:focus,&:hover,&$active': {
+      boxShadow: 'inherit',
+    },
+  },
+  active: {},
+  valueLabel: {
+    left: 'calc(-50% + 4px)',
+  },
+  track: {
+    height: 8,
+    borderRadius: 4,
+  },
+  rail: {
+    height: 8,
+    borderRadius: 4,
+  },
+})(Slider)
 
 const getRandomInt = max => {
   return Math.floor(Math.random() * Math.floor(max))
@@ -30,50 +69,54 @@ const getRandomInt = max => {
 const newData = () =>
   new Array(10).fill(0).map(i => ({ id: i, score: getRandomInt(8) }))
 
-const Hero = () => {
+export default () => {
   const classes = useStyles()
   const [data, setData] = useState(newData())
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [span, setSpan] = useState(900)
 
-  useEffect(() => {
-    const startMove = () => setInterval(() => setData(newData()), 1000)
-    startMove()
-  }, [isScrolled])
+  useInterval(() => setData(newData), span)
+
+  const handleChangeSpeed = (event, newVaule) => {
+    setSpan(2000 - newVaule)
+  }
 
   return (
     <div className={classes.root}>
       <div className={classes.title}>
         <Typography variant="h1">Hayato Okuma</Typography>
-        <Typography>ポートフォリオです。よろしく。</Typography>
+        <PrettoSlider
+          max={1800}
+          defaultValue={900}
+          step={10}
+          onChange={handleChangeSpeed}
+        />
+        <Typography>
+          映画と洋服がゆる〜く好きな20卒エンジニアです
+          <span role="img" aria-label="kuma">
+            🐻
+          </span>{' '}
+        </Typography>
       </div>
-
-      <BarChart
-        height={800}
-        width={window.outerWidth}
-        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
-        data={data}
-        barGap={0}
-        barSize={1200}
-      >
-        <Bar dataKey="score" animationDuration={1000}>
-          {data.map((entry, index) => (
-            <Cell
-              key={index}
-              fill={entry.score === 0 ? '#bcaaa4' : '#cfd8dc'}
-            />
-          ))}
-        </Bar>
-      </BarChart>
+      {span < 2000 && (
+        <BarChart
+          height={800}
+          width={window.outerWidth}
+          margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+          data={data}
+          barGap={0}
+          barSize={1200}
+        >
+          {console.log(span)}
+          <Bar dataKey="score" animationDuration={span}>
+            {data.map((entry, index) => (
+              <Cell
+                key={index}
+                fill={entry.score === 0 ? '#bcaaa4' : '#cfd8dc'}
+              />
+            ))}
+          </Bar>
+        </BarChart>
+      )}
     </div>
   )
 }
-
-Hero.propTypes = {
-  name: PropTypes.string,
-}
-
-Hero.defaultProps = {
-  name: 'hoge',
-}
-
-export default Hero
