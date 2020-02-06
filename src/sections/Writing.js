@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles'
 import Container from 'components/Container'
 import { Typography, Grid } from '@material-ui/core'
 import Headline from 'components/Headline'
-import SmallCard from 'components/SmallCard'
+import Article from 'components/Article'
 import { fetchQiitaArticles } from 'lib/api'
 
 const useStyles = makeStyles(theme => ({
@@ -45,7 +45,7 @@ const Writing = props => {
         >
           {articles.map((article, i) => (
             <Grid item key={i} xs={12}>
-              <SmallCard article={article} />
+              <Article article={article} />
             </Grid>
           ))}
         </Grid>
