@@ -18,7 +18,7 @@ const About = props => {
   const classes = useStyles()
   return (
     <Container>
-      <div id="about"></div>
+      <div id="about" />
       <Headline>About</Headline>
       <Grid
         container

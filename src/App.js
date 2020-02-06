@@ -6,6 +6,7 @@ import Header from 'components/Header'
 import Hero from 'components/Hero'
 import About from 'sections/About'
 import { BrowserRouter } from 'react-router-dom'
+import Projects from 'sections/Projects'
 
 const App = () => {
   const isMobile = useMediaQuery('(max-width:600px)')
@@ -15,6 +16,7 @@ const App = () => {
         <Header {...{ isMobile }} />
         <Hero {...{ isMobile }} />
         <About {...{ isMobile }} />
+        <Projects {...{ isMobile }} />
       </BrowserRouter>
     </ThemeProvider>
   )
