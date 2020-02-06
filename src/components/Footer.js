@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
       marginLeft: 16,
     },
   },
+  icon: { color: '#e0e0e0' },
 }))
 
 const Footer = props => {
@@ -73,7 +74,9 @@ const Footer = props => {
                 button
                 onClick={() => handleOpenAccount(account)}
               >
-                <ListItemIcon>{account.Icon}</ListItemIcon>
+                <ListItemIcon className={classes.icon}>
+                  {account.Icon}
+                </ListItemIcon>
                 <ListItemText>
                   <Typography variant="button">{account.name}</Typography>
                 </ListItemText>
