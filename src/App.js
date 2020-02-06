@@ -8,6 +8,7 @@ import About from 'sections/About'
 import { BrowserRouter } from 'react-router-dom'
 import Projects from 'sections/Projects'
 import Writing from 'sections/Writing'
+import Footer from 'components/Footer'
 
 const App = () => {
   const isMobile = useMediaQuery('(max-width:600px)')
@@ -19,6 +20,7 @@ const App = () => {
         <About {...{ isMobile }} />
         <Projects {...{ isMobile }} />
         <Writing {...{ isMobile }} />
+        <Footer {...{ isMobile }} />
       </BrowserRouter>
     </ThemeProvider>
   )
