@@ -76,6 +76,18 @@ theme.typography = {
     fontWeight: 700,
     color: '#fafafa',
   },
+  h3: {
+    fontFamily: 'Audiowide',
+    fontSize: 18,
+    fontWeight: 400,
+    color: '#fafafa',
+    '&:visited': {
+      color: '#fafafa',
+    },
+    '&:hover': {
+      color: theme.palette.secondary.main,
+    },
+  },
   subtitle1: {
     fontFamily: 'Audiowide',
     fontSize: 48,
