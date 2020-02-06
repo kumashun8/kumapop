@@ -73,13 +73,11 @@ theme.typography = {
   h2: {
     fontFamily: 'Audiowide',
     fontSize: 32,
-    fontWeight: 700,
     color: '#fafafa',
   },
   h3: {
     fontFamily: 'Audiowide',
     fontSize: 18,
-    fontWeight: 400,
     color: '#fafafa',
     '&:visited': {
       color: '#fafafa',
@@ -88,11 +86,17 @@ theme.typography = {
       color: theme.palette.secondary.main,
     },
   },
+  h4: {
+    fontFamily: 'Koruri',
+    fontSize: 18,
+    fontWeight: 700,
+    color: theme.palette.primary.main,
+  },
   subtitle1: {
     fontFamily: 'Audiowide',
     fontSize: 48,
     fontWeight: 700,
-    marginBottom: 8,
+    marginBottom: 16,
     color: palette.primary.main,
     [theme.breakpoints.down('xs')]: {
       fontSize: 32,
@@ -111,8 +115,10 @@ theme.typography = {
   },
   body2: {
     fontSize: 16,
-    fontWeight: 700,
-    color: '#fafafa',
+    color: '#030303',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 14,
+    },
   },
   button: {
     fontFamily: 'Koruri, Arial',
@@ -120,7 +126,8 @@ theme.typography = {
   },
   caption: {
     fontSize: 12,
-    color: palette.info.main,
+    marginBottom: 8,
+    color: palette.secondary.main,
   },
   pxToRem: size => `${(size / htmlFontSize) * coef(size)}rem`,
 }

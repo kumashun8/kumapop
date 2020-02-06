@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/styles'
 import Container from 'components/Container'
 import { Typography, Grid } from '@material-ui/core'
 import Headline from 'components/Headline'
+import Card from 'components/Card'
+import projects from 'data/projects'
 
 const useStyles = makeStyles(theme => ({
   image: {
@@ -26,7 +28,13 @@ const Projects = props => {
         alignItems="center"
         alignContent="center"
         spacing={5}
-      ></Grid>
+      >
+        {projects.map((project, i) => (
+          <Grid item key={i} xs={isMobile ? 12 : 6}>
+            <Card project={project} />
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   )
 }
