@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   detail: { marginTop: 8 },
 }))
 
-const MyCard = props => {
+const Project = props => {
   const { project } = props
   const classes = useStyles()
 
@@ -61,7 +61,7 @@ const MyCard = props => {
   )
 }
 
-MyCard.propTypes = {
+Project.propTypes = {
   project: PropTypes.shape({
     name: PropTypes.string.isRequired,
     year: PropTypes.string.isRequired,
@@ -73,4 +73,4 @@ MyCard.propTypes = {
   }).isRequired,
 }
 
-export default MyCard
+export default Project
