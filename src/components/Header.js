@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import {
   Slide,
   useScrollTrigger,
-  CssBaseline,
   AppBar,
   Typography,
   makeStyles,
+  Grid,
 } from '@material-ui/core'
+import { HashLink } from 'react-router-hash-link'
 
 const HideOnScroll = props => {
   const { children } = props
-
   const trigger = useScrollTrigger()
 
   return (
@@ -25,22 +25,60 @@ HideOnScroll.propTypes = {
   children: PropTypes.element.isRequired,
 }
 
+const sections = [
+  { id: '#about', title: 'About' },
+  { id: '#projects', title: 'Projects' },
+  { id: '#writing', title: 'Writing' },
+]
+
 const useStyles = makeStyles(theme => ({
   root: { padding: 16 },
+  link: { textDecoration: 'none' },
+  linkWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }))
 
 const Header = props => {
+  const { isMobile } = props
   const classes = useStyles()
 
   return (
     <React.Fragment>
       <HideOnScroll {...props}>
         <AppBar className={classes.root}>
-          <Typography variant="h2">H.O</Typography>
+          <Grid container justify="space-between" alignItems="center">
+            <Grid item xs={3}>
+              <Typography variant="h2">H.O</Typography>
+            </Grid>
+            <Grid item xs={9}>
+              <Grid
+                container
+                justify={isMobile ? 'space-around' : 'flex-end'}
+                alignItems="center"
+                spacing={2}
+              >
+                {sections.map((s, i) => (
+                  <Grid item xs={2} key={i}>
+                    <div className={classes.linkWrapper}>
+                      <HashLink smooth to={s.id} className={classes.link}>
+                        <Typography variant="h3">{s.title}</Typography>
+                      </HashLink>
+                    </div>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+          </Grid>
         </AppBar>
       </HideOnScroll>
     </React.Fragment>
   )
+}
+
+Header.propTypes = {
+  isMobile: PropTypes.bool.isRequired,
 }
 
 export default Header

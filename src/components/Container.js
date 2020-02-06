@@ -1,13 +1,18 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import { grey } from '@material-ui/core/colors'
 
 const useStyles = makeStyles(theme => ({
   container: {
-    backgroundColor: grey[50],
-    color: grey[800],
+    color: '030303',
     padding: '40px 40px 64px 40px',
+    margin: '120px auto',
+    width: 1000,
+    [theme.breakpoints.down('md')]: {
+      width: '90vw',
+      padding: 16,
+      margin: '80px auto',
+    },
   },
 }))
 

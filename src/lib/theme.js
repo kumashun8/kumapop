@@ -64,9 +64,10 @@ theme.typography = {
     fontFamily: 'Audiowide',
     fontSize: 80,
     fontWeight: 700,
+    whiteSpace: 'pre-line',
     color: palette.secondary.main,
     [theme.breakpoints.down('xs')]: {
-      fontSize: 36,
+      fontSize: 64,
     },
   },
   h2: {
@@ -75,18 +76,37 @@ theme.typography = {
     fontWeight: 700,
     color: '#fafafa',
   },
+  h3: {
+    fontFamily: 'Audiowide',
+    fontSize: 18,
+    fontWeight: 400,
+    color: '#fafafa',
+    '&:visited': {
+      color: '#fafafa',
+    },
+    '&:hover': {
+      color: theme.palette.secondary.main,
+    },
+  },
   subtitle1: {
-    fontSize: 24,
+    fontFamily: 'Audiowide',
+    fontSize: 48,
     fontWeight: 700,
     marginBottom: 8,
     color: palette.primary.main,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 32,
+    },
   },
   body1: {
     fontFamily: 'Koruri, Arial',
+    whiteSpace: 'pre-line',
     fontSize: 16,
+    lineHeight: '32px',
     color: '#030303',
     [theme.breakpoints.down('xs')]: {
-      fontSize: 12,
+      fontSize: 14,
+      lineHeight: '28px',
     },
   },
   body2: {

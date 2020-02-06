@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { makeStyles, withStyles } from '@material-ui/styles'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/styles'
 import { BarChart, Bar, Cell } from 'recharts'
-import { Typography, Slider } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { useInterval } from 'lib/hook'
+import Slider from 'components/Slider'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -10,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     position: 'relative',
     alignItems: 'flex-end',
+    backgroundColor: theme.palette.primary.main,
   },
   title: {
     position: 'absolute',
@@ -20,61 +23,28 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-  },
-  slider: {
-    width: '50vw',
-    height: '16px',
-    '& thumb': {
-      height: 24,
+    [theme.breakpoints.down('xs')]: {
+      top: '30vh',
     },
   },
 }))
-
-const PrettoSlider = withStyles({
-  root: {
-    color: '#bcaaa4',
-    height: 8,
-    width: '50vw',
-    margin: '8px 0',
-  },
-  thumb: {
-    height: 24,
-    width: 24,
-    backgroundColor: '#fafafa',
-    border: '4px solid currentColor',
-    marginTop: -8,
-    marginLeft: -12,
-    '&:focus,&:hover,&$active': {
-      boxShadow: 'inherit',
-    },
-  },
-  active: {},
-  valueLabel: {
-    left: 'calc(-50% + 4px)',
-  },
-  track: {
-    height: 8,
-    borderRadius: 4,
-  },
-  rail: {
-    height: 8,
-    borderRadius: 4,
-  },
-})(Slider)
 
 const getRandomInt = max => {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
-const newData = () =>
-  new Array(10).fill(0).map(i => ({ id: i, score: getRandomInt(8) }))
+const newData = isMobile =>
+  new Array(isMobile ? 6 : 8)
+    .fill(0)
+    .map(i => ({ id: i, score: getRandomInt(8) }))
 
-export default () => {
+const Hero = props => {
+  const { isMobile } = props
   const classes = useStyles()
-  const [data, setData] = useState(newData())
+  const [data, setData] = useState(newData(isMobile))
   const [span, setSpan] = useState(900)
 
-  useInterval(() => setData(newData), span)
+  useInterval(() => setData(newData(isMobile)), span)
 
   const handleChangeSpeed = (event, newVaule) => {
     setSpan(2000 - newVaule)
@@ -83,18 +53,22 @@ export default () => {
   return (
     <div className={classes.root}>
       <div className={classes.title}>
-        <Typography variant="h1">Hayato Okuma</Typography>
-        <PrettoSlider
+        <Typography variant="h1">Hayato{isMobile ? '\n' : ' '}Okuma</Typography>
+        <Slider
           max={1800}
           defaultValue={900}
           step={10}
           onChange={handleChangeSpeed}
         />
         <Typography>
-          映画と洋服がゆる〜く好きな20卒エンジニアです
+          こつこつハック
           <span role="img" aria-label="kuma">
-            🐻
-          </span>{' '}
+            👨‍💻
+          </span>
+          ゆるっとファッション
+          <span role="img" aria-label="kuma">
+            🎩
+          </span>
         </Typography>
       </div>
       {span < 2000 && (
@@ -106,12 +80,11 @@ export default () => {
           barGap={0}
           barSize={1200}
         >
-          {console.log(span)}
           <Bar dataKey="score" animationDuration={span}>
             {data.map((entry, index) => (
               <Cell
                 key={index}
-                fill={entry.score === 0 ? '#bcaaa4' : '#cfd8dc'}
+                fill={entry.score === 0 ? '#bcaaa4' : '#e0e0e0'}
               />
             ))}
           </Bar>
@@ -120,3 +93,9 @@ export default () => {
     </div>
   )
 }
+
+Hero.propTypes = {
+  isMobile: PropTypes.bool.isRequired,
+}
+
+export default Hero
