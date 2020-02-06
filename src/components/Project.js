@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/styles'
 import { GitHub, Launch } from '@material-ui/icons'
+import { makeStyles } from '@material-ui/styles'
 import {
   Typography,
   Card,
