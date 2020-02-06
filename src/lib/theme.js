@@ -63,7 +63,6 @@ theme.typography = {
   h1: {
     fontFamily: 'Audiowide',
     fontSize: 80,
-    fontWeight: 700,
     whiteSpace: 'pre-line',
     color: palette.secondary.main,
     [theme.breakpoints.down('xs')]: {
@@ -103,6 +102,15 @@ theme.typography = {
       fontSize: 16,
     },
   },
+  h6: {
+    fontFamily: 'Audiowide',
+    fontSize: 40,
+    whiteSpace: 'pre-line',
+    color: '#e0e0e0',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 24,
+    },
+  },
   subtitle1: {
     fontFamily: 'Audiowide',
     fontSize: 48,
@@ -132,8 +140,13 @@ theme.typography = {
     },
   },
   button: {
+    fontSize: 18,
+    fontWeight: 700,
     fontFamily: 'Koruri, Arial',
-    color: '#fafafa',
+    color: '#e0e0e0',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 16,
+    },
   },
   caption: {
     fontSize: 12,
