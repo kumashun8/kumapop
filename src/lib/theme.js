@@ -5,7 +5,7 @@ import AudiowideTtf from 'fonts/Audiowide-Regular.ttf'
 
 const palette = {
   primary: { main: '#00796B' },
-  secondary: { main: '#673AB7' },
+  secondary: { main: '#bcaaa4' },
   error: { main: '#ef5350' },
   warning: { main: '#cddc39' },
   info: { main: '#004d40' },
@@ -40,13 +40,32 @@ const audiowide = {
     'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
 }
 
-const typography = {
-  fontFamily: 'Koruri, Arial',
+const themeName = 'Hayato OKUMA Katagami annotation tool theme'
+
+const theme = createMuiTheme(
+  {
+    palette,
+    themeName,
+    overrides: {
+      MuiCssBaseline: {
+        '@global': {
+          '@font-face': [koruri, audiowide],
+        },
+      },
+    },
+  },
+  jaJP
+)
+
+theme.typography = {
   h1: {
     fontFamily: 'Audiowide',
     fontSize: 80,
     fontWeight: 700,
-    color: '#00796B',
+    color: palette.secondary.main,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 36,
+    },
   },
   h2: {
     fontFamily: 'Audiowide',
@@ -61,8 +80,12 @@ const typography = {
     color: palette.primary.main,
   },
   body1: {
+    fontFamily: 'Koruri, Arial',
     fontSize: 16,
     color: '#030303',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 12,
+    },
   },
   body2: {
     fontSize: 16,
@@ -79,20 +102,4 @@ const typography = {
   },
 }
 
-const themeName = 'Hayato OKUMA Katagami annotation tool theme'
-
-export default createMuiTheme(
-  {
-    palette,
-    typography,
-    themeName,
-    overrides: {
-      MuiCssBaseline: {
-        '@global': {
-          '@font-face': [koruri, audiowide],
-        },
-      },
-    },
-  },
-  jaJP
-)
+export default theme

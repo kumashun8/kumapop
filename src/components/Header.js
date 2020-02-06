@@ -34,7 +34,6 @@ const Header = props => {
 
   return (
     <React.Fragment>
-      <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar className={classes.root}>
           <Typography variant="h2">H.O</Typography>

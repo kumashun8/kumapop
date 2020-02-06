@@ -4,23 +4,17 @@ import { makeStyles } from '@material-ui/styles'
 import { BarChart, Bar, Cell } from 'recharts'
 import { Typography } from '@material-ui/core'
 
-const getRandomInt = max => {
-  return Math.floor(Math.random() * Math.floor(max))
-}
-
-const newData = () =>
-  new Array(10).fill(0).map(i => ({ id: i, score: getRandomInt(8) }))
-
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '80vh',
+    height: '100vh',
     display: 'flex',
     position: 'relative',
+    alignItems: 'flex-end',
   },
   title: {
     position: 'absolute',
     zIndex: 5,
-    top: '45vh',
+    top: '40vh',
     width: '100vw',
     display: 'flex',
     justifyContent: 'center',
@@ -28,6 +22,13 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
   },
 }))
+
+const getRandomInt = max => {
+  return Math.floor(Math.random() * Math.floor(max))
+}
+
+const newData = () =>
+  new Array(10).fill(0).map(i => ({ id: i, score: getRandomInt(8) }))
 
 const Hero = () => {
   const classes = useStyles()
@@ -58,7 +59,7 @@ const Hero = () => {
           {data.map((entry, index) => (
             <Cell
               key={index}
-              fill={entry.score === 0 ? '#9ea7aa' : '#cfd8dc'}
+              fill={entry.score === 0 ? '#bcaaa4' : '#cfd8dc'}
             />
           ))}
         </Bar>
