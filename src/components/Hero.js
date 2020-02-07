@@ -51,7 +51,7 @@ const Hero = props => {
   }
 
   return (
-    <div className={classes.root}>
+    <div id="top" className={classes.root}>
       <div className={classes.title}>
         <Typography variant="h1">Hayato{isMobile ? '\n' : ' '}Okuma</Typography>
         <Slider

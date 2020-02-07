@@ -50,7 +50,9 @@ const Header = props => {
         <AppBar className={classes.root}>
           <Grid container justify="space-between" alignItems="center">
             <Grid item xs={3}>
-              <Typography variant="h2">H.O</Typography>
+              <HashLink smooth to="#top" className={classes.link}>
+                <Typography variant="h2">H.O</Typography>
+              </HashLink>
             </Grid>
             <Grid item xs={9}>
               <Grid
