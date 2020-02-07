@@ -52,7 +52,7 @@ theme.typography = {
     },
   },
   h4: {
-    fontFamily: 'Koruri',
+    fontFamily: 'Koruri, Arial',
     fontSize: 24,
     fontWeight: 'bold',
     color: theme.palette.primary.main,
@@ -61,7 +61,7 @@ theme.typography = {
     },
   },
   h5: {
-    fontFamily: 'Koruri',
+    fontFamily: 'Koruri, Arial',
     fontSize: 20,
     color: theme.palette.primary.main,
     [theme.breakpoints.down('xs')]: {
@@ -99,6 +99,7 @@ theme.typography = {
     },
   },
   body2: {
+    fontFamily: 'Koruri, Arial',
     fontSize: 16,
     color: '#030303',
     [theme.breakpoints.down('xs')]: {
@@ -106,15 +107,16 @@ theme.typography = {
     },
   },
   button: {
+    fontFamily: 'Koruri, Arial',
     fontSize: 18,
     fontWeight: 700,
-    fontFamily: 'Koruri, Arial',
     color: '#e0e0e0',
     [theme.breakpoints.down('xs')]: {
       fontSize: 16,
     },
   },
   caption: {
+    fontFamily: 'Koruri, Arial',
     fontSize: 12,
     marginBottom: 8,
     color: palette.secondary.main,
