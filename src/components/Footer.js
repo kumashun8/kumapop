@@ -45,12 +45,16 @@ const Footer = props => {
     {
       Icon: <MailOutline fontSize={iconSize} />,
       name: 'tiwo3wa4@gmail.com',
-      url: 'mailto:p00h_33@outlook.jp',
+      url: 'mailto:tiwo3wa4@gmail.com',
     },
   ]
 
   const handleOpenAccount = account => {
-    window.open(account.url, '_blank')
+    if (account.url.match(/mailto/)) {
+      window.location.href = account.url
+    } else {
+      window.open(account.url, '_blanck')
+    }
   }
   return (
     <div className={classes.root}>
