@@ -10,6 +10,7 @@ export const fetchQiitaArticles = async props => {
 const fetchGet = async props => {
   const { auth, url, successAction, failureAction } = props
   console.log(auth)
+  console.log(process.env.NODE_ENV)
 
   return await fetch(url, {
     headers: {
