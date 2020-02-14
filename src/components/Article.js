@@ -8,6 +8,7 @@ import {
   CardContent,
   Chip,
 } from '@material-ui/core'
+import { Zoom } from 'react-reveal'
 
 const useStyles = makeStyles(theme => ({
   root: { padding: 8 },
@@ -23,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Article = props => {
-  const { article } = props
+  const { i, article } = props
   const classes = useStyles()
 
   const handleOpenArticle = () => {
@@ -31,25 +32,28 @@ const Article = props => {
   }
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea onClick={handleOpenArticle}>
-        <CardContent>
-          <Typography variant="h5">{article.title}</Typography>
-          <Typography variant="caption">
-            {article.created_at.slice(0, 10)}
-          </Typography>
-          <div className={classes.tags}>
-            {article.tags.map((t, i) => (
-              <Chip key={i} label={t.name} />
-            ))}
-          </div>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <Zoom delay={i < 2 ? 2000 : 0}>
+      <Card className={classes.root}>
+        <CardActionArea onClick={handleOpenArticle}>
+          <CardContent>
+            <Typography variant="h5">{article.title}</Typography>
+            <Typography variant="caption">
+              {article.created_at.slice(0, 10)}
+            </Typography>
+            <div className={classes.tags}>
+              {article.tags.map((t, i) => (
+                <Chip key={i} label={t.name} />
+              ))}
+            </div>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Zoom>
   )
 }
 
 Article.propTypes = {
+  i: PropTypes.number.isRequired,
   article: PropTypes.shape({
     title: PropTypes.string.isRequired,
     created_at: PropTypes.string.isRequired,

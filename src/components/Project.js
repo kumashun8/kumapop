@@ -12,6 +12,7 @@ import {
   IconButton,
   Tooltip,
 } from '@material-ui/core'
+import { Zoom } from 'react-reveal'
 
 const useStyles = makeStyles(theme => ({
   image: { height: 200 },
@@ -19,8 +20,19 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Project = props => {
-  const { project } = props
+  const { i, project, isMobile } = props
   const classes = useStyles()
+
+  const delay = i => {
+    switch (i) {
+      case 0:
+        return 2500
+      case 1:
+        return isMobile ? 0 : 2500
+      default:
+        return 0
+    }
+  }
 
   const handleOpenGithub = () => {
     window.open(project.github, '_blank')
@@ -30,38 +42,41 @@ const Project = props => {
   }
 
   return (
-    <Card>
-      <CardActionArea>
-        <CardMedia
-          className={classes.image}
-          image={project.image}
-          title={project.name}
-        />
-        <CardContent>
-          <Typography variant="h4">{project.name}</Typography>
-          <Typography variant="caption">{`${project.member} / ${project.year}`}</Typography>
-          <Typography variant="body2" className={classes.detail}>
-            {project.detail}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Tooltip placement="bottom" title="Githubリポジトリ">
-          <IconButton onClick={handleOpenGithub}>
-            <GitHub fontSize="small" />
-          </IconButton>
-        </Tooltip>
-        <Tooltip placement="bottom" title="公開中のサイト">
-          <IconButton onClick={handleOpenPublic}>
-            <Launch fontSize="small" />
-          </IconButton>
-        </Tooltip>
-      </CardActions>
-    </Card>
+    <Zoom delay={delay(i)} duration={2000}>
+      <Card>
+        <CardActionArea>
+          <CardMedia
+            className={classes.image}
+            image={project.image}
+            title={project.name}
+          />
+          <CardContent>
+            <Typography variant="h4">{project.name}</Typography>
+            <Typography variant="caption">{`${project.member} / ${project.year}`}</Typography>
+            <Typography variant="body2" className={classes.detail}>
+              {project.detail}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Tooltip placement="bottom" title="Githubリポジトリ">
+            <IconButton onClick={handleOpenGithub}>
+              <GitHub fontSize="small" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip placement="bottom" title="公開中のサイト">
+            <IconButton onClick={handleOpenPublic}>
+              <Launch fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        </CardActions>
+      </Card>
+    </Zoom>
   )
 }
 
 Project.propTypes = {
+  i: PropTypes.number.isRequired,
   project: PropTypes.shape({
     name: PropTypes.string.isRequired,
     year: PropTypes.string.isRequired,
@@ -71,6 +86,7 @@ Project.propTypes = {
     github: PropTypes.string.isRequired,
     public: PropTypes.string.isRequired,
   }).isRequired,
+  isMobile: PropTypes.bool.isRequired,
 }
 
 export default Project

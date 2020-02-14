@@ -5,6 +5,7 @@ import Container from 'components/Container'
 import { Typography, Grid } from '@material-ui/core'
 import Headline from 'components/Headline'
 import myImage from 'images/me.jpg'
+import { Fade } from 'react-reveal'
 
 const useStyles = makeStyles(theme => ({
   image: {
@@ -29,16 +30,20 @@ const About = props => {
         spacing={5}
       >
         <Grid item xs={isMobile ? 12 : 8}>
-          <Typography>
-            大隈 隼 (おおくま はやと) 平成9年生まれの福岡出身。{'\n'}
-            大学3年の時にチームでアプリ開発をしたことをきっかけにWeb業界に興味を持ち、2020年4月から東京でWebエンジニアとして働くことになりました。
-            {'\n'}
-            {'\n'}
-            趣味は映画鑑賞で、上京先の部屋にホームシアターを置く計画を立てています。洋服やスニーカーなどファッションも大好きで、ゆるすぎず品のある着こなしに憧れます。
-          </Typography>
+          <Fade bottom delay={2000}>
+            <Typography>
+              大隈 隼 (おおくま はやと) 平成9年生まれの福岡出身。{'\n'}
+              大学3年の時にチームでアプリ開発をしたことをきっかけにWeb業界に興味を持ち、2020年4月から東京でWebエンジニアとして働くことになりました。
+              {'\n'}
+              {'\n'}
+              趣味は映画鑑賞で、上京先の部屋にホームシアターを置く計画を立てています。洋服やスニーカーなどファッションも大好きで、ゆるすぎず品のある着こなしに憧れます。
+            </Typography>
+          </Fade>
         </Grid>
         <Grid item xs={isMobile ? 10 : 4}>
-          <img src={myImage} className={classes.image} alt="myImage" />
+          <Fade right delay={3000}>
+            <img src={myImage} className={classes.image} alt="myImage" />
+          </Fade>
         </Grid>
       </Grid>
     </Container>
