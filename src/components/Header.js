@@ -8,7 +8,7 @@ import {
   makeStyles,
   Grid,
 } from '@material-ui/core'
-import { HashLink } from 'react-router-hash-link'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const HideOnScroll = props => {
   const { children } = props
@@ -50,9 +50,12 @@ const Header = props => {
         <AppBar className={classes.root}>
           <Grid container justify="space-between" alignItems="center">
             <Grid item xs={3}>
-              <HashLink smooth to="#top" className={classes.link}>
+              <AnchorLink href="#top" className={classes.link}>
                 <Typography variant="h2">H.O</Typography>
-              </HashLink>
+              </AnchorLink>
+              {/* <HashLink smooth to="/#" className={classes.link}>
+                <Typography variant="h2">H.O</Typography>
+              </HashLink> */}
             </Grid>
             <Grid item xs={9}>
               <Grid
@@ -64,9 +67,9 @@ const Header = props => {
                 {sections.map((s, i) => (
                   <Grid item xs={2} key={i}>
                     <div className={classes.linkWrapper}>
-                      <HashLink smooth to={s.id} className={classes.link}>
+                      <AnchorLink href={s.id} className={classes.link}>
                         <Typography variant="h3">{s.title}</Typography>
-                      </HashLink>
+                      </AnchorLink>
                     </div>
                   </Grid>
                 ))}
