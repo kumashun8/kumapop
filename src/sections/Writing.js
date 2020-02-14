@@ -6,6 +6,7 @@ import { Typography, Grid } from '@material-ui/core'
 import Headline from 'components/Headline'
 import Article from 'components/Article'
 import { fetchQiitaArticles } from 'lib/api'
+import { Fade } from 'react-reveal'
 
 const useStyles = makeStyles(theme => ({
   articles: { marginTop: 16 },
@@ -29,10 +30,12 @@ const Writing = props => {
     <Container>
       <div id="writing" />
       <Headline>Writing</Headline>
-      <Typography>
-        Qiitaの投稿記事一覧です。{'\n'}
-        そのうちリッチな内容の記事描きたいなぁ...。
-      </Typography>
+      <Fade bottom delay={1000}>
+        <Typography>
+          Qiitaの投稿記事一覧です。{'\n'}
+          そのうちリッチな内容の記事描きたいなぁ...。
+        </Typography>
+      </Fade>
       {!isLoading && (
         <Grid
           container
@@ -45,7 +48,7 @@ const Writing = props => {
         >
           {articles.map((article, i) => (
             <Grid item key={i} xs={12}>
-              <Article article={article} />
+              <Article {...{ i, article }} />
             </Grid>
           ))}
         </Grid>

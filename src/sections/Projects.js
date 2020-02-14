@@ -6,6 +6,7 @@ import { Typography, Grid } from '@material-ui/core'
 import Headline from 'components/Headline'
 import Project from 'components/Project'
 import projects from 'data/projects'
+import { Fade } from 'react-reveal'
 
 const useStyles = makeStyles(theme => ({
   projects: { marginTop: 16 },
@@ -18,10 +19,12 @@ const Projects = props => {
     <Container>
       <div id="projects" />
       <Headline>Projects</Headline>
-      <Typography>
-        公表可能なレベルの成果物はこんな感じです。{'\n'}メインはRails, React,
-        Gatsbyです。
-      </Typography>
+      <Fade bottom delay={2000}>
+        <Typography>
+          公表可能なレベルの成果物はこんな感じです。{'\n'}メインはRails, React,
+          Gatsbyを扱っています。
+        </Typography>
+      </Fade>
       <Grid
         container
         className={classes.projects}
@@ -33,7 +36,7 @@ const Projects = props => {
       >
         {projects.map((project, i) => (
           <Grid item key={i} xs={isMobile ? 12 : 6}>
-            <Project project={project} />
+            <Project {...{ i, project, isMobile }} />
           </Grid>
         ))}
       </Grid>
