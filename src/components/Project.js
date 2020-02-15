@@ -42,7 +42,7 @@ const Project = props => {
   }
 
   return (
-    <Zoom delay={delay(i)} duration={2000}>
+    <Zoom delay={delay(i)} duration={isMobile ? 1000 : 2000}>
       <Card>
         <CardActionArea>
           <CardMedia

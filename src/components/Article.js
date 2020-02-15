@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Article = props => {
-  const { i, article } = props
+  const { i, article, isMobile } = props
   const classes = useStyles()
 
   const handleOpenArticle = () => {
@@ -32,7 +32,7 @@ const Article = props => {
   }
 
   return (
-    <Zoom delay={i < 2 ? 2000 : 0}>
+    <Zoom delay={i < 2 && !isMobile ? 2000 : 1000}>
       <Card className={classes.root}>
         <CardActionArea onClick={handleOpenArticle}>
           <CardContent>
@@ -54,6 +54,7 @@ const Article = props => {
 
 Article.propTypes = {
   i: PropTypes.number.isRequired,
+  isMobile: PropTypes.bool.isRequired,
   article: PropTypes.shape({
     title: PropTypes.string.isRequired,
     created_at: PropTypes.string.isRequired,

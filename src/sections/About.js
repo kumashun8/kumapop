@@ -30,7 +30,7 @@ const About = props => {
         spacing={5}
       >
         <Grid item xs={isMobile ? 12 : 8}>
-          <Fade bottom delay={2000}>
+          <Fade bottom delay={isMobile ? 1000 : 2000}>
             <Typography>
               大隈 隼 (おおくま はやと) 平成9年生まれの福岡出身。{'\n'}
               大学3年の時にチームでアプリ開発をしたことをきっかけにWeb業界に興味を持ち、2020年4月から東京でWebエンジニアとして働くことになりました。
@@ -41,7 +41,7 @@ const About = props => {
           </Fade>
         </Grid>
         <Grid item xs={isMobile ? 10 : 4}>
-          <Fade right delay={3000}>
+          <Fade right delay={isMobile ? 1500 : 3000}>
             <img src={myImage} className={classes.image} alt="myImage" />
           </Fade>
         </Grid>

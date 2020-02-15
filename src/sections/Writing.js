@@ -48,7 +48,7 @@ const Writing = props => {
         >
           {articles.map((article, i) => (
             <Grid item key={i} xs={12}>
-              <Article {...{ i, article }} />
+              <Article {...{ i, article, isMobile }} />
             </Grid>
           ))}
         </Grid>
