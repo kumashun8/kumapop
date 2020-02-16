@@ -9,9 +9,12 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Projects from 'sections/Projects'
 import Writing from 'sections/Writing'
 import Footer from 'components/Footer'
+import client from 'lib/client'
+import { ClientContextProvider } from 'react-fetching-library'
 
 const Main = () => {
   const isMobile = useMediaQuery('(max-width:600px)')
+
   return (
     <ThemeProvider theme={theme}>
       <Header {...{ isMobile }} />
@@ -26,9 +29,11 @@ const Main = () => {
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Route path="/" component={Main} />
-    </BrowserRouter>
+    <ClientContextProvider client={client}>
+      <BrowserRouter>
+        <Route path="/" component={Main} />
+      </BrowserRouter>
+    </ClientContextProvider>
   )
 }
 
