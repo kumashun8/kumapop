@@ -32,23 +32,23 @@ const Article = props => {
   }
 
   return (
-    // <Zoom delay={i < 2 && !isMobile ? 2000 : 1000}>
-    <Card className={classes.root}>
-      <CardActionArea onClick={handleOpenArticle}>
-        <CardContent>
-          <Typography variant="h5">{article.title}</Typography>
-          <Typography variant="caption">
-            {article.created_at.slice(0, 10)}
-          </Typography>
-          <div className={classes.tags}>
-            {article.tags.map((t, i) => (
-              <Chip key={i} label={t.name} />
-            ))}
-          </div>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-    // </Zoom>
+    <Zoom delay={i < 2 && !isMobile ? 2000 : 1000}>
+      <Card className={classes.root}>
+        <CardActionArea onClick={handleOpenArticle}>
+          <CardContent>
+            <Typography variant="h5">{article.title}</Typography>
+            <Typography variant="caption">
+              {article.created_at.slice(0, 10)}
+            </Typography>
+            <div className={classes.tags}>
+              {article.tags.map((t, i) => (
+                <Chip key={i} label={t.name} />
+              ))}
+            </div>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Zoom>
   )
 }
 
