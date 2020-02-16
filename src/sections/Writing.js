@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import Container from 'components/Container'
-import { Typography, Grid } from '@material-ui/core'
+import { Typography, Grid, useMediaQuery } from '@material-ui/core'
 import Headline from 'components/Headline'
 import Article from 'components/Article'
-import { fetchQiitaArticles } from 'lib/api'
 import { Fade } from 'react-reveal'
 
 const useStyles = makeStyles(theme => ({
@@ -13,18 +12,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Writing = props => {
-  const { isMobile } = props
+  const { articles, error } = props
+  const isMobile = useMediaQuery('(max-width:600px)')
   const classes = useStyles()
-  const [articles, setArticles] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    const handleGetArticles = response => {
-      setArticles(response)
-      setIsLoading(false)
-    }
-    fetchQiitaArticles({ handleGetArticles })
-  }, [isMobile])
 
   return (
     <Container>
@@ -36,7 +26,8 @@ const Writing = props => {
           そのうちリッチな内容の記事描きたいなぁ...。
         </Typography>
       </Fade>
-      {!isLoading && (
+      {error && <span>データの取得に失敗しました。</span>}
+      {articles && (
         <Grid
           container
           className={classes.articles}
@@ -58,7 +49,8 @@ const Writing = props => {
 }
 
 Writing.propTypes = {
-  isMobile: PropTypes.bool.isRequired,
+  articles: PropTypes.arrayOf(PropTypes.object).isRequired,
+  error: PropTypes.string.isRequired,
 }
 
 export default Writing
